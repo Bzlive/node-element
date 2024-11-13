@@ -1,0 +1,49 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "bingzi",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server -c build/dev.js",
+    "build": "cross-env NODE_ENV=production webpack -c build/prod.js",
+    "ws": "node server/websocket",
+    "api": "node server/interface"
+  },
+  "dependencies": {
+    "@types/less": "^3.0.6",
+    "@types/node": "^22.7.6",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "antd": "^5.21.4",
+    "autoprefixer": "^10.4.20",
+    "axios": "^1.7.7",
+    "classnames": "^2.5.1",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "css-loader": "^7.1.2",
+    "express": "^4.21.1",
+    "html-webpack-plugin": "^5.6.0",
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
+    "mysql": "^2.18.1",
+    "postcss-loader": "^8.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "^6.27.0",
+    "react-router-dom": "^6.27.0",
+    "style-loader": "^4.0.0",
+    "typescript": "^5.6.3",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0",
+    "webpack-merge": "^6.0.1",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.8",
+    "@babel/preset-react": "^7.25.7",
+    "@babel/preset-typescript": "^7.25.7",
+    "babel-loader": "^9.2.1"
+  }
+}
