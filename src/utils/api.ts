@@ -1,5 +1,8 @@
 import axios from 'axios'
 import { message } from 'antd';
+// import { useNavigate } from 'react-router-dom'
+
+// const navigate = useNavigate();
 
 // 创建一个 Axios 实例
 const axiosInstance = axios.create({
@@ -15,8 +18,9 @@ const axiosInstance = axios.create({
 // 请求拦截器
 axiosInstance.interceptors.request.use(
   config => {
+    const token = localStorage.getItem('token');
     // 在发送请求之前做些什么，例如添加身份验证令牌
-    // config.headers['Authorization'] = `Bearer ${token}`;
+    if (token) config.headers['Token'] = token;
     return config;
   },
   error => {
@@ -54,10 +58,11 @@ axiosInstance.interceptors.response.use(
       switch (response.status) {
         case 401:
           message.error('未授权，请登录');
+          location.href = location.host + '/login'
           // 未授权，可以跳转到登录页面
           break;
         case 403:
-          message.error('403');
+          message.error('权限不足');
           // 禁止访问，可以给用户一个友好的提示
           break;
         case 404:

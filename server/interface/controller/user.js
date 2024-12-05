@@ -99,7 +99,7 @@ class User extends Base {
       age: { required: true },
       gender: { required: true },
       phone_number: { required: true, rule: /^1[3456789]\d{9}$/ },
-      password: { required: true, rule: /^.{7,}$/ },
+      password: { required: true, rule: /^.{6,}$/ },
     }, req, res)
     if (!validate) return
     const sql = `

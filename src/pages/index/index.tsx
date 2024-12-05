@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu } from "antd";
+import { Menu, Button } from "antd";
 import { useNavigate } from 'react-router-dom'
 
 interface MenuProps {
@@ -38,6 +38,11 @@ const Index = () => {
     navigate(props.path)
   };
 
+  const handleLoginOut = () => {
+    localStorage.removeItem('token');
+    navigate('/login', { replace: true })
+  }
+
   return (<div>
     {/* <ul>
       <li>  <Link to="/about">about</Link></li>
@@ -45,6 +50,8 @@ const Index = () => {
       <li>  <Link to="/user">user</Link></li>
     </ul> */}
     <Menu mode="horizontal" selectedKeys={[current]} onClick={onClick} items={items} />
+
+    <Button onClick={handleLoginOut}>退出登录</Button>
   </div>)
 }
 

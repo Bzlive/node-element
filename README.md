@@ -6,4 +6,4 @@
 
 ## client
 
-### react + antd + react-router + typescript
+### webpack + react + antd + react-router + typescript

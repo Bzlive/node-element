@@ -3,6 +3,7 @@ import Index from '@/pages/index/index'
 import About from '@/pages/about/index'
 import ChatRoom from '@/pages/chatRoom/index'
 import User from '@/pages/user/index'
+import Login from '@/pages/login/index'
 
 export const routes = [
   {
@@ -24,6 +25,10 @@ export const routes = [
       {
         path: 'user',
         Component: User
+      },
+      {
+        path: 'login',
+        Component: Login
       }
     ]
   }

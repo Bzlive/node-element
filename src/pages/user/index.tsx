@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Table, Flex, message, Button, Divider, Modal, Form, Input, Radio, InputNumber, Row, Col} from 'antd';
 import type { TableProps } from 'antd';
 import API from '@/utils/api';
-import { Content } from "antd/es/layout/layout";
 
 interface DataType {
   id: string;
