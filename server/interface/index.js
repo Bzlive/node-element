@@ -6,6 +6,7 @@ const cors = require('cors');
 
 // 接口路由入口
 const router = require('./router/index.js')
+const Crawling = require('./controller/crawling.js')
 
 // 日志
 // log4jsMiddleware.use(app)
@@ -24,6 +25,9 @@ app.all('*', (req, res, next) => {
     next();
 	}
 });
+
+// 执行爬取
+Crawling.scheduleTask();
 
 // 解决跨域
 app.use(cors())
