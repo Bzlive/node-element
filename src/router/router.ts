@@ -5,6 +5,7 @@ import ChatRoom from '@/pages/chatRoom/index'
 import User from '@/pages/user/index'
 import Login from '@/pages/login/index'
 import Data from '@/pages/data/index'
+import JsPage from '@/pages/js/index'
 
 export const routes = [
   {
@@ -30,6 +31,10 @@ export const routes = [
       {
         path: 'data',
         Component: Data
+      },
+      {
+        path: 'js',
+        Component: JsPage
       },
       {
         path: 'login',

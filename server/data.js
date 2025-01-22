@@ -1,8 +1,71 @@
 const storeJson = require('../data/store.json')
 const zqJson = require('../data/zq.json')
 const checkStoreJson = require('../data/checkStore.json')
+const ncStore = require('../data/ncStore.json')
+const noPeriodPointDay = require('../data/no_period_point_day.json')
+const allPeriodPointDay = require('../data/all_period_point_day.json')
+const companys = require('../data/companys.json')
 const fs = require('fs');
 const path = require('path');
+
+const upNoCompanys = () => {
+  const noCompanysList = companys['企业客户导出'];
+  const noPeriodPointDayList = noPeriodPointDay['所有未设置结账日企业'].map(v => +v.ep_company_id);
+  const zqJsonList = zqJson[0]?.map(v => +v['企业客户ID']);
+  const notDayList = [...noPeriodPointDayList, ...zqJsonList]
+
+  const newList = noCompanysList.filter(item => !notDayList.includes(+item['企业id']) && item['企业账户状态'] === 1);
+  console.log('%c [ newList ]-36', 'font-size:13px; background:pink; color:#bf2c9f;', noCompanysList.length, notDayList.length, newList.length)
+  const outputPath = 'data/resNoCompanyDays.json';
+  fs.writeFile(outputPath, JSON.stringify(newList), 'utf8', (err) => {
+    if (err) throw err;
+    console.log('JSON 文件合并成功，已保存到', outputPath);
+  });
+}
+
+const upNoPeriodPointDay = () => {
+  const noPeriodPointDayList = noPeriodPointDay['所有未设置结账日企业'];
+  const allPeriodPointDayList = allPeriodPointDay['Sheet1']?.map(v => v['企业客户ID']);
+
+  const newList = noPeriodPointDayList.filter(item => !allPeriodPointDayList.includes(+item?.ep_company_id));
+  console.log('%c [ newList ]-36', 'font-size:13px; background:pink; color:#bf2c9f;', noPeriodPointDayList.length , allPeriodPointDayList.length, newList.length)
+  const outputPath = 'data/resNotCompany.json';
+  fs.writeFile(outputPath, JSON.stringify(newList), 'utf8', (err) => {
+    if (err) throw err;
+    console.log('JSON 文件合并成功，已保存到', outputPath);
+  });
+}
+
+const updateNCStore = () => {
+  const sList = storeJson['企业关联客户导出'];
+  const zList = zqJson[0];
+  const nzList = ncStore['Sheet1'];
+  const newList = nzList.map(item => {
+    const resItem = sList.find(v => v['关联店铺ID'] == item['店铺ID']) || {};
+    const resZ = zList.find(v => v['企业客户ID'] == resItem['企业ID']) || {};
+    return {
+      ['商家ID']: resZ['商家ID'] || '',
+      ['商家名称']: resZ['商家名称'] || '',
+      ['企业ID']: resItem['企业ID'] || '',
+      ['企业名称']: resItem['企业名称'] || '',
+      ['店铺ID']: item['店铺ID'] || '',
+      ['店铺名称']: item['店铺名称'] || '',
+      ['账期类型']: resZ['账期类型'] || '',
+      ['账期授信天数']: resZ['账期授信天数'] || '',
+      ['账期授信额度']: resZ['账期授信额度'] || '',
+      ['结账日']: item['结账日'] || '',
+      ['对账日']: item['对账日'] || '',
+    };
+  })
+
+  console.log('%c [ newList ]-36', 'font-size:13px; background:pink; color:#bf2c9f;', newList.length)
+  const outputPath = 'data/resNCStore.json';
+  fs.writeFile(outputPath, JSON.stringify(newList), 'utf8', (err) => {
+    if (err) throw err;
+    console.log('JSON 文件合并成功，已保存到', outputPath);
+  });
+}
+
 const updateStore = () => {
   const sList = storeJson['企业关联客户导出'];
   const zList = zqJson[0];
@@ -54,8 +117,10 @@ const checkStoreFun = () => {
   });
 }
 
-
-updateStore();
+upNoCompanys();
+// upNoPeriodPointDay();
+// updateNCStore();
+// updateStore();
 // checkStoreFun();
 
 // 读取 JSON 文件内容
