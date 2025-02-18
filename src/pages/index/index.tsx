@@ -29,6 +29,16 @@ const Index = () => {
       label: 'user',
       key: 'user',
       path: '/user',
+    },
+    {
+      label: 'flow',
+      key: 'flow',
+      path: '/flow',
+    },
+    {
+      label: 'lottery',
+      key: 'lottery',
+      path: '/lottery',
     }
   ];
   const navigate = useNavigate();

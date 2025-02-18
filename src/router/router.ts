@@ -6,6 +6,8 @@ import User from '@/pages/user/index'
 import Login from '@/pages/login/index'
 import Data from '@/pages/data/index'
 import JsPage from '@/pages/js/index'
+import Flow from '@/pages/flow/index'
+import Lottery from '@/pages/lottery/index'
 
 export const routes = [
   {
@@ -39,6 +41,14 @@ export const routes = [
       {
         path: 'login',
         Component: Login
+      },
+      {
+        path: 'flow',
+        Component: Flow
+      },
+      {
+        path: 'lottery',
+        Component: Lottery
       }
     ]
   }
