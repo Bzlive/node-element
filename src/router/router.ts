@@ -8,6 +8,7 @@ import Data from '@/pages/data/index'
 import JsPage from '@/pages/js/index'
 import Flow from '@/pages/flow/index'
 import Lottery from '@/pages/lottery/index'
+import Hooks from '@/pages/hooks/index'
 
 export const routes = [
   {
@@ -49,6 +50,10 @@ export const routes = [
       {
         path: 'lottery',
         Component: Lottery
+      },
+      {
+        path: 'hooks',
+        Component: Hooks
       }
     ]
   }

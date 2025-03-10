@@ -39,7 +39,7 @@ const Lottery = () => {
   }
 
   const handleData = () => {
-    const resData = dataSource.map(v => v.nums.join(' ')).slice(0, 500)
+    const resData = dataSource.map(v => v.nums.join(' ')).reverse()
     console.log('%c [ resData ]-43', 'font-size:13px; background:pink; color:#bf2c9f;', resData)
   }
 

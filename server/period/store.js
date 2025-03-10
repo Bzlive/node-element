@@ -64,14 +64,24 @@ const getEnableStoreNew = () => {
 
   // 获取使用账期企业下的店铺
   const associationStoreCompanyArr = associationStoreCompany['Sheet1'];
-  const newIdList = newList.map(v => +v.ep_company_id);
-  const newStoreList = associationStoreCompanyArr.filter(v => newIdList.includes(v.company_id));
+  // const newIdList = newList.map(v => +v.ep_company_id);
+  const newStoreList = associationStoreCompanyArr.filter(v => {
+    const data = newList.find(item => +item.ep_company_id === v.company_id);
+    // newIdList.includes(v.company_id)
+    v['billing_period_type'] = data?.billing_period_type;
+    v['period_point_day'] = data?.period_point_day;
+    return !!data;
+  });
   // const newStoreIds = newStoreList.map(v => v.store_id);
   // console.log('%c [ newStoreIds ]-68', 'font-size:13px; background:pink; color:#bf2c9f;', newStoreIds.length);
   // fs.writeFile('data/period/resRealAssociationStoreIds.json', JSON.stringify(newStoreIds), 'utf8', (err) => {
   //   if (err) throw err;
   //   console.log('JSON 文件合并成功，已保存到', 'data/period/resRealAssociationStoreIds.json');
   // });
+  fs.writeFile('data/period/resRealAssociationStore.json', JSON.stringify(newStoreList), 'utf8', (err) => {
+    if (err) throw err;
+    console.log('JSON 文件合并成功，已保存到', 'data/period/resRealAssociationStore.json');
+  });
 
 
   // 结账日和账期类型
