@@ -9,6 +9,6 @@ const root = document.querySelector('#root');
 if (root) {
   createRoot(root).render(
     <RouterProvider router={router}>
-      </RouterProvider>
+    </RouterProvider>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Menu, Button, Input } from "antd";
 import { useNavigate } from 'react-router-dom'
+import Upload from '@/components/Upload';
 
 interface MenuProps {
   label: string,
@@ -75,6 +76,8 @@ const Index = () => {
     </div>
 
     <Button onClick={handleLoginOut}>退出登录</Button>
+
+    <Upload />
   </div>)
 }
 

@@ -11,6 +11,7 @@
     "api": "node server/interface"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.26.9",
     "@types/less": "^3.0.6",
     "@types/node": "^22.7.6",
     "@types/react-dom": "^18.3.1",

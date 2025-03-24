@@ -10,7 +10,7 @@ class Crawling {
   }
 
   scheduleTask () {
-    schedule.scheduleJob("0 23 17 * * *", () => {
+    schedule.scheduleJob("0 06 17 * * *", () => {
       const tasks = [
         { name: 'ssq', url: 'https://datachart.500.com/ssq/history/newinc/history.php?start=1', filePath: './static/ssq.json' },
         { name: 'dlt', url: 'https://datachart.500.com/dlt/history/newinc/history.php?start=1', filePath: './static/dlt.json' },
